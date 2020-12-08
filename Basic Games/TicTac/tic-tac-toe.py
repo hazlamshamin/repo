@@ -56,8 +56,8 @@ def space_check(board, position):
 #check if every position on the board is occupied
 def full_board_check(board):
     full=False
-    for position in board:
-        full=full+space_check(board,position)
+    for i in [1,2,3,4,5,6,7,8,9]:
+        full=full+space_check(board,i)
     return full
 
 #prompt input from user which position does the user want to mark at
@@ -122,6 +122,12 @@ def tictac():
                 position=player_choice(board)
                 place_marker(board, marker, position)
                 display_board(board)
+                
+                if full_board_check(board)==0:
+                    print("The game is draw!")
+                    playing==False
+                    break
+
                 if win_check(board,marker)==True:
                     playing==False
                     break
@@ -131,10 +137,7 @@ def tictac():
                 else:
                     marker=player1
     
-                if full_board_check==True:
-                    print("The game is draw!")
-                    playing==False
-                    break
+                
             
         if replay()=='N':
             playing==False
